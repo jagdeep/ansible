@@ -1,0 +1,64 @@
+---
+- hosts: localhost
+  become: yes
+  vars:
+    - user: 'hulk'
+    - docker_compose_version: '1.29.2'
+    - dotfiles_repo: 'git@github.com:stribny/dotfiles.git'
+    - ssh_key: '.ssh/id_rsa'
+
+  tasks:
+    - name: Install system packages
+      dnf: 
+        name:
+          - curl
+          - ca-certificates
+          - dnf-plugins-core
+          - flatpak
+          - nano
+          - git
+          - bat
+          - exa
+          - podman
+          - buildah
+        state: latest
+
+    - name: Install Python packages
+      pip:
+        name:
+          - poetry
+        state: latest
+
+    - name: Install Chromium and Chrome Web Browser
+      dnf:
+        name:
+          - chromium
+          - fedora-workstation-repositories
+          - google-chrome-stable
+        enablerepo: google-chrome
+        state: latest
+
+    - name: Install Skype using Flatpak
+      community.general.flatpak:
+        name:  https://flathub.org/repo/appstream/com.skype.Client.flatpakref
+        state: latest
+
+    - name: Install docker packages
+      dnf: 
+        name:
+          - dnf-plugins-core
+          - config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+        state: latest
+      tags:
+        - docker
+
+    - name: Install docker-compose
+      remote_user: ubuntu
+      get_url: 
+        url : "https://github.com/docker/compose/releases/download/{{docker_compose_version}}/docker-compose-Linux-x86_64"
+        dest: /usr/local/bin/docker-compose
+        mode: 'u+x,g+x'
+
