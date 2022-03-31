@@ -38,12 +38,12 @@
         state: latest
 
     - name: Install MailSpring using Snap
-      community.general.snap:
+      snap:
         name: mailspring
         state: latest
 
     - name: Install BitWarden using Snap
-      community.general.snap:
+      snap:
         name: bitwarden
         state: latest
 
