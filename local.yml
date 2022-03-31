@@ -52,6 +52,27 @@
         state: latest
 
     ## Install Docker and Docker Compose
+    - name: Make sure dnf-plugins.core installed
+      dnf:
+        name: dnf-plugins-core
+        state: present
+
+    - name: Make sure docker from distro is not installed
+      yum:
+        name: "{{ item }}"
+        state: absent
+      with_items:
+        - docker
+        - docker-client
+        - docker-client-latest
+        - docker-common
+        - docker-latest
+        - docker-latest-logrotate
+        - docker-logrotate
+        - docker-selinux
+        - docker-engine-selinux
+        - docker-engine
+
     - name: "Add Docker's official GPG key"
       rpm_key:
         state: present
@@ -60,13 +81,8 @@
       tags:
         - docker
 
-    - name: Add docker repository
-      yum_repository:
-        name: docker-ce
-        description: Docker YUM Repo
-        baseurl: https://download.docker.com/linux/fedora
-        gpgcheck: true
-        gpgkey: "https://download.docker.com/linux/fedora/gpg"
+    - name: Install docker repository
+      command: dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
 
     - name: Install docker
       dnf: 
