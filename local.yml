@@ -2,10 +2,7 @@
 - hosts: localhost
   become: yes
   vars:
-    - user: 'hulk'
     - docker_compose_version: '1.29.2'
-    - dotfiles_repo: 'git@github.com:stribny/dotfiles.git'
-    - ssh_key: '.ssh/id_rsa'
 
   tasks:
     - name: Install system packages
@@ -21,6 +18,7 @@
           - exa
           - podman
           - buildah
+          - python3-pip
         state: latest
 
     - name: Install Python packages
