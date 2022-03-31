@@ -43,6 +43,7 @@
     - name: Add skype repository
       yum_repository:
         name: skype-stable
+        description: Skype YUM Repo
         baseurl: https://repo.skype.com/rpm/stable
 
     - name: Install Skype using Flatpak
