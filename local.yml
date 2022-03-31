@@ -40,12 +40,12 @@
     - name: Install MailSpring using Snap
       snap:
         name: mailspring
-        state: latest
+        state: present
 
     - name: Install BitWarden using Snap
       snap:
         name: bitwarden
-        state: latest
+        state: present
 
     ## Install Web Browsers
     - name: Install Chrome Web Browser
