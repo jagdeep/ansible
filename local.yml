@@ -12,12 +12,9 @@
           - ca-certificates
           - dnf-plugins-core
           - flatpak
-          - nano
           - git
           - bat
           - exa
-          - podman
-          - buildah
           - python3-pip
         state: latest
 
@@ -27,14 +24,43 @@
           - poetry
         state: latest
 
+    ## Install Utilities
+    - name: Install basic utilies
+      dnf: 
+        name:
+          - htop
+          - bpytop
+          - neofetch
+          - ncdu
+          - nano
+          - podman
+          - buildah
+        state: latest
+
+    - name: Install MailSpring using Snap
+      community.general.snap:
+        name:
+          - mailspring
+        state: latest
+
+    - name: Install BitWarden using Snap
+      community.general.snap:
+        name:
+          - bitwarden
+        state: latest
+
     ## Install Web Browsers
-    - name: Install Chromium and Chrome Web Browser
+    - name: Install Chrome Web Browser
       dnf:
         name:
-          - chromium
           - fedora-workstation-repositories
           - google-chrome-stable
         enablerepo: google-chrome
+        state: latest
+
+    - name: Install Librewolf Web Browser
+      dnf:
+        name: Librewolf
         state: latest
 
     ## Install Skype
@@ -64,4 +90,3 @@
       dnf:
         name: code
         state: latest
-
