@@ -39,14 +39,12 @@
 
     - name: Install MailSpring using Snap
       community.general.snap:
-        name:
-          - mailspring
+        name: mailspring
         state: latest
 
     - name: Install BitWarden using Snap
       community.general.snap:
-        name:
-          - bitwarden
+        name: bitwarden
         state: latest
 
     ## Install Web Browsers
