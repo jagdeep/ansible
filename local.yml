@@ -29,6 +29,8 @@
           - poetry
         state: latest
 
+    ## Install Web Browsers
+
     - name: Install Chromium and Chrome Web Browser
       dnf:
         name:
@@ -38,10 +40,19 @@
         enablerepo: google-chrome
         state: latest
 
+    ## Install Skype
+
+    - name: Add skype repository
+      yum_repository:
+        name: skype-stable
+        baseurl: https://repo.skype.com/rpm/stable
+
     - name: Install Skype using Flatpak
-      community.general.flatpak:
-        name:  https://flathub.org/repo/appstream/com.skype.Client.flatpakref
+      dnf:
+        name: skypeforlinux
         state: latest
+
+    ## Install Docker and Docker Compose
 
     - name: Install docker packages
       dnf: 
