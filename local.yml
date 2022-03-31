@@ -51,54 +51,17 @@
         name: skypeforlinux
         state: latest
 
-    ## Install Docker and Docker Compose
-    - name: Make sure dnf-plugins.core installed
+    ## Install Microsoft Visual Studio Code
+    - name: Add VS Code repository
+      yum_repository:
+        name: vscode
+        description: VS Code YUM Repo
+        baseurl: https://packages.microsoft.com/yumrepos/vscode
+        gpgcheck: true
+        gpgkey: "https://packages.microsoft.com/keys/microsoft.asc"
+
+    - name: Install VS Code
       dnf:
-        name: dnf-plugins-core
-        state: present
-
-    - name: Make sure docker from distro is not installed
-      yum:
-        name: "{{ item }}"
-        state: absent
-      with_items:
-        - docker
-        - docker-client
-        - docker-client-latest
-        - docker-common
-        - docker-latest
-        - docker-latest-logrotate
-        - docker-logrotate
-        - docker-selinux
-        - docker-engine-selinux
-        - docker-engine
-
-    - name: "Add Docker's official GPG key"
-      rpm_key:
-        state: present
-        key: https://download.docker.com/linux/fedora/gpg
-        fingerprint: 060A 61C5 1B55 8A7F 742B 77AA C52F EB6B 621E 9F35
-      tags:
-        - docker
-
-    - name: Install docker repository
-      command: dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
-
-    - name: Install docker
-      dnf: 
-        name:
-          - dnf-plugins-core
-          - docker-ce
-          - docker-ce-cli
-          - containerd.io
+        name: code
         state: latest
-      tags:
-        - docker
-
-    - name: Install docker-compose
-      remote_user: ubuntu
-      get_url: 
-        url : "https://github.com/docker/compose/releases/download/{{docker_compose_version}}/docker-compose-Linux-x86_64"
-        dest: /usr/local/bin/docker-compose
-        mode: 'u+x,g+x'
 
