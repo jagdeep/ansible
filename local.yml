@@ -12,6 +12,7 @@
           - ca-certificates
           - dnf-plugins-core
           - flatpak
+          - snapd
           - git
           - bat
           - exa
