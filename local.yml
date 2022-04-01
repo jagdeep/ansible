@@ -74,7 +74,8 @@
       yum:
         name: https://zoom.us/client/latest/zoom_x86_64.rpm
         state: present
-        gpgcheck: false
+        gpgcheck: true
+        gpgkey: "https://zoom.us/linux/download/pubkey"
 
     ## Install Microsoft Teams
     - name: Add Yum signing key
