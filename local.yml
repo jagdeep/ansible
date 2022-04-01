@@ -168,21 +168,6 @@
         name: code
         state: latest
 
-    ## Install Docker and Docker compose
-    - name: Add Docker repository
-      yum_repository:
-        name: docker-ce
-        description: Docker Repo
-        baseurl: https://download.docker.com/linux/fedora
-        gpgcheck: true
-        gpgkey: "https://download.docker.com/linux/fedora/gpg"
-
-    - name: Install Docker
-      dnf:
-        name:
-          - docker-ce
-        state: latest
-
     # - name: Add ansible-pull cron job
     #   cron:
     #     name: ansible auto-provision
