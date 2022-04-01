@@ -49,6 +49,7 @@
         name: mailspring
         state: present
 
+    ## Install BitWarden
     - name: Install BitWarden using Snap
       snap:
         name: bitwarden
@@ -69,10 +70,30 @@
         state: present
 
     ## Install Zoom
-    - name: Remote RPM install with yum
+    - name: Install Zoom with RPM
       yum:
         name: https://zoom.us/client/latest/zoom_x86_64.rpm
         state: present
+        gpgcheck: false
+
+    ## Install Microsoft Edge
+    - name: Add Yum signing key
+      rpm_key:
+        key: "https://packages.microsoft.com/keys/microsoft.asc"
+        state: present
+    - name: Add repository into repo.d list
+      yum_repository:
+        name: teams
+        description: teams
+        baseurl: "https://packages.microsoft.com/yumrepos/ms-teams/"
+        enabled: true
+        gpgcheck: true
+        gpgkey: "https://packages.microsoft.com/keys/microsoft.asc"
+    - name: Install teams
+      dnf:
+        name: "teams"
+        state: latest
+        update_cache: true
 
     ## Install Web Browsers
     - name: Install Chrome Web Browser
@@ -85,11 +106,11 @@
 
     ## Install Microsoft Edge
     - name: Add Yum signing key
-      ansible.builtin.rpm_key:
+      rpm_key:
         key: "https://packages.microsoft.com/keys/microsoft.asc"
         state: present
     - name: Add repository into repo.d list
-      ansible.builtin.yum_repository:
+      yum_repository:
         name: microsoft-edge
         description: microsoft-edge
         baseurl: "https://packages.microsoft.com/yumrepos/edge/"
@@ -97,7 +118,7 @@
         gpgcheck: true
         gpgkey: "https://packages.microsoft.com/keys/microsoft.asc"
     - name: Install microsoft-edge-stable
-      ansible.builtin.yum:
+      dnf:
         name: "microsoft-edge-stable"
         state: latest
         update_cache: true
