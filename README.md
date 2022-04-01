@@ -1,6 +1,10 @@
-# Ansible for Workstation Setup on Fedora 32
+# Ansible for Fedora 35
+Ansible Playbook for a Fedora 35 workstation Setup using ansible-pull
 
 ## Install Ansible
+
+Ansible is an IT automation tool. It can configure systems, deploy software, and orchestrate more advanced IT tasks such as continuous deployments or zero downtime rolling updates.
+
 ```
 sudo yum install ansible
 ```
@@ -11,4 +15,12 @@ The collection is a part of the Ansible package and includes many modules and pl
 
 ```
 ansible-galaxy collection install community.general
+```
+
+## Execute Ansible Playbook
+
+This pulls playbooks from a VCS repo and executes them for the local host
+
+```
+sudo ansible-pull -U https://github.com/jagdeep/ansible.git
 ```
