@@ -16,6 +16,7 @@
           - git
           - bat
           - exa
+          - gnupg2
           - python3-pip
         state: latest
 
@@ -47,6 +48,16 @@
         dest: /snap
         state: link
 
+    # Install Starship
+    - name: Install Starship using Snap
+      snap:
+        name: starship
+        state: present
+
+    - name: Add init script for starship
+      command: echo "eval \"$(starship init bash)\"" >> ~/.bashrc
+
+    # Install Mailspring
     - name: Install MailSpring using Snap
       snap:
         name: mailspring
@@ -168,6 +179,13 @@
       dnf:
         name: code
         state: latest
+
+    ## Install RVM
+    - name: Ensure that GPG key for RVM is installed
+      shell: gpg2 --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+
+    - name: Ensure that RVM is installed
+      shell: curl -sSL https://get.rvm.io | bash -s stable
 
     # - name: Add ansible-pull cron job
     #   cron:

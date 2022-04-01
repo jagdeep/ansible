@@ -1,0 +1,25 @@
+---
+- hosts: localhost
+  become: yes
+
+  tasks:
+    - name: Add Oracle signing key
+      rpm_key:
+        key: "https://yum.oracle.com/RPM-GPG-KEY-oracle-ol8"
+        fingerprint: 76FD 3DB1 3AB6 7410 B89D B10E 8256 2EA9 AD98 6DA3
+        state: present
+
+    - name: Add Oracle repository
+      yum_repository:
+        name: oracle-instantclient
+        description: oracle-instantclient
+        baseurl: "https://yum.oracle.com/repo/OracleLinux/OL8/oracle/instantclient21/x86_64"
+        enabled: true
+        gpgcheck: true
+        gpgkey: "https://yum.oracle.com/RPM-GPG-KEY-oracle-ol8"
+
+    - name: Install Oracle instant client
+      dnf:
+        name:
+          - oracle-instantclient-basic.x86_64
+          - oracle-instantclient-sqlplus.x86_64

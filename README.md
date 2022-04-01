@@ -1,5 +1,5 @@
 # Ansible for Fedora 35
-Ansible Playbook for a Fedora 35 workstation Setup using ansible-pull
+Ansible for a Fedora 35 workstation Setup using ansible-pull
 
 ## Install Ansible
 
@@ -23,4 +23,22 @@ This pulls playbooks from a VCS repo and executes them for the local host
 
 ```
 sudo ansible-pull -U https://github.com/jagdeep/ansible.git
+```
+
+# Extras
+
+## Install Oracle Instant Cleint with sqlplus
+```
+sudo ansible-playbook oracle.yml
+```
+
+## Install docker and docker compose
+```
+sudo ansible-playbook docker.yml
+```
+
+## Install Ansible role for rvm
+It is an Ansible role to install and manage ruby versions using rvm.
+```
+ansible-galaxy install rvm.ruby
 ```
