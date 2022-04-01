@@ -76,7 +76,7 @@
         state: present
         gpgcheck: false
 
-    ## Install Microsoft Edge
+    ## Install Microsoft Teams
     - name: Add Yum signing key
       rpm_key:
         key: "https://packages.microsoft.com/keys/microsoft.asc"
@@ -93,7 +93,6 @@
       dnf:
         name: "teams"
         state: latest
-        update_cache: true
 
     ## Install Web Browsers
     - name: Install Chrome Web Browser
@@ -121,7 +120,6 @@
       dnf:
         name: "microsoft-edge-stable"
         state: latest
-        update_cache: true
 
     - name: Install Librewolf repository
       yum_repository:
