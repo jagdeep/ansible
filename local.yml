@@ -70,7 +70,7 @@
         state: present
 
     ## Install Zoom
-    - name: Add Yum signing key
+    - name: Add Zoom signing key
       rpm_key:
         key: "https://zoom.us/linux/download/pubkey"
         state: present
@@ -80,11 +80,11 @@
         state: present
 
     ## Install Microsoft Teams
-    - name: Add Yum signing key
+    - name: Add Microsoft Teams signing key
       rpm_key:
         key: "https://packages.microsoft.com/keys/microsoft.asc"
         state: present
-    - name: Add repository into repo.d list
+    - name: Add Microsoft Teams Repo
       yum_repository:
         name: teams
         description: teams
@@ -92,7 +92,7 @@
         enabled: true
         gpgcheck: true
         gpgkey: "https://packages.microsoft.com/keys/microsoft.asc"
-    - name: Install teams
+    - name: Install Microsoft Teams
       dnf:
         name: "teams"
         state: latest
@@ -107,11 +107,11 @@
         state: latest
 
     ## Install Microsoft Edge
-    - name: Add Yum signing key
+    - name: Add Microsoft Edge signing key
       rpm_key:
         key: "https://packages.microsoft.com/keys/microsoft.asc"
         state: present
-    - name: Add repository into repo.d list
+    - name: Add Microsoft Edge repository
       yum_repository:
         name: microsoft-edge
         description: microsoft-edge
@@ -119,7 +119,7 @@
         enabled: true
         gpgcheck: true
         gpgkey: "https://packages.microsoft.com/keys/microsoft.asc"
-    - name: Install microsoft-edge-stable
+    - name: Install Microsoft Edge
       dnf:
         name: "microsoft-edge-stable"
         state: latest
@@ -139,7 +139,7 @@
         state: latest
 
     ## Install Skype
-    - name: Add skype repository
+    - name: Add Skype repository
       yum_repository:
         name: skype-stable
         description: Skype YUM Repo
@@ -161,7 +161,7 @@
         gpgcheck: true
         gpgkey: "https://packages.microsoft.com/keys/microsoft.asc"
 
-    - name: Install VS Code
+    - name: Install Visual Studio Code
       dnf:
         name: code
         state: latest
