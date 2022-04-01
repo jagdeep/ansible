@@ -70,12 +70,14 @@
         state: present
 
     ## Install Zoom
+    - name: Add Yum signing key
+      rpm_key:
+        key: "https://zoom.us/linux/download/pubkey"
+        state: present
     - name: Install Zoom with RPM
-      yum:
+      dnf:
         name: https://zoom.us/client/latest/zoom_x86_64.rpm
         state: present
-        gpgcheck: true
-        gpgkey: "https://zoom.us/linux/download/pubkey"
 
     ## Install Microsoft Teams
     - name: Add Yum signing key
@@ -122,6 +124,7 @@
         name: "microsoft-edge-stable"
         state: latest
 
+    ## Install Librewolf
     - name: Install Librewolf repository
       yum_repository:
         name: librewolf
@@ -150,7 +153,7 @@
         state: latest
 
     ## Install Microsoft Visual Studio Code
-    - name: Add VS Code repository
+    - name: Add Visual Studio Code repository
       yum_repository:
         name: vscode
         description: VS Code YUM Repo
