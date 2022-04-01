@@ -48,6 +48,26 @@
         name: bitwarden
         state: present
 
+    ## Install IntelliJ Community Edition
+    - name: Install IntelliJ using Snap
+      snap:
+        name: intellij-idea-community
+        classic: yes
+        state: present
+
+    ## Install DataGrip Community Edition
+    - name: Install DataGrip using Snap
+      snap:
+        name: datagrip
+        classic: yes
+        state: present
+
+    ## Install Zoom
+    - name: Remote RPM install with yum
+      yum:
+        name: https://zoom.us/client/latest/zoom_x86_64.rpm
+        state: present
+
     ## Install Web Browsers
     - name: Install Chrome Web Browser
       dnf:
@@ -56,6 +76,25 @@
           - google-chrome-stable
         enablerepo: google-chrome
         state: latest
+
+    ## Install Microsoft Edge
+    - name: Add Yum signing key
+      ansible.builtin.rpm_key:
+        key: "https://packages.microsoft.com/keys/microsoft.asc"
+        state: present
+    - name: Add repository into repo.d list
+      ansible.builtin.yum_repository:
+        name: microsoft-edge
+        description: microsoft-edge
+        baseurl: "https://packages.microsoft.com/yumrepos/edge/"
+        enabled: true
+        gpgcheck: true
+        gpgkey: "https://packages.microsoft.com/keys/microsoft.asc"
+    - name: Install microsoft-edge-stable
+      ansible.builtin.yum:
+        name: "microsoft-edge-stable"
+        state: latest
+        update_cache: true
 
     - name: Install Librewolf repository
       yum_repository:
@@ -98,9 +137,9 @@
         name: code
         state: latest
 
-    - name: Add ansible-pull cron job
-      cron:
-        name: ansible auto-provision
-        user: jagdeep
-        minute: "*/10"
-        job: ansible-pull -o -U https://github.com/jagdeep/ansible.git
+    # - name: Add ansible-pull cron job
+    #   cron:
+    #     name: ansible auto-provision
+    #     user: jagdeep
+    #     minute: "*/10"
+    #     job: ansible-pull -o -U https://github.com/jagdeep/ansible.git
