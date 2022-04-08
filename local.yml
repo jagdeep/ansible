@@ -75,7 +75,7 @@
 
     ## Install Helix Editor
     - name: Enable COPR for Helix
-      community.general.copr:
+      copr:
         name: varlad/helix
         state: enabled
 
