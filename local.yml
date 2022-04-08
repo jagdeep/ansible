@@ -73,6 +73,16 @@
         name: bitwarden
         state: present
 
+    ## Install Helix Editor
+    - name: Enable COPR for Helix
+      copr:
+        state: enabled
+        name: varlad/helix
+    - name: Install Helix Editor
+      dnf:
+        name: helix
+        state: present
+
     ## Install IntelliJ Community Edition
     - name: Install IntelliJ using Snap
       snap:
