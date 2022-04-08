@@ -20,6 +20,8 @@
           - exa
           - gnupg2
           - python3-pip
+          - cronie
+          - cronie-anacron
         state: latest
 
     - name: Install Python packages
@@ -188,6 +190,8 @@
       local_action: command whoami
       register: whoami
 
+    - debug: var=whoami
+
     - name: Ensure that GPG key for RVM is installed
       become: false
       become_user: "{{ whoami }}"
@@ -197,6 +201,8 @@
       become: false
       become_user: "{{ whoami }}"
       shell: curl -sSL https://get.rvm.io | bash -s stable
+      args:
+        warn: no
 
     - name: Add ansible-pull cron job
       become: false
