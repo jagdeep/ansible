@@ -9,6 +9,8 @@
       dnf:
         name:
           - curl
+          - fish
+          - terminator
           - ca-certificates
           - dnf-plugins-core
           - flatpak
