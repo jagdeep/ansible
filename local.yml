@@ -76,8 +76,9 @@
     ## Install Helix Editor
     - name: Enable COPR for Helix
       copr:
-        state: enabled
         name: varlad/helix
+        state: enabled
+
     - name: Install Helix Editor
       dnf:
         name: helix
