@@ -79,7 +79,7 @@
         name: varlad/helix
         state: enabled
 
-    - name: Install Helix Editor
+    - name: "Install Helix Editor"
       dnf:
         name: helix
         state: present
