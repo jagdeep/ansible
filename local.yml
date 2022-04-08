@@ -199,10 +199,10 @@
       shell: curl -sSL https://get.rvm.io | bash -s stable
 
     - name: Add ansible-pull cron job
+      become: false
+      become_user: "{{ whoami }}"
       cron:
         name: ansible auto-provision
-        become: false
-        become_user: "{{ whoami }}"
         user: "{{ whoami }}"
         minute: "*/10"
         job: ansible-pull -o -U https://github.com/jagdeep/ansible-fedora-35.git
