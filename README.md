@@ -42,3 +42,9 @@ It is an Ansible role to install and manage ruby versions using rvm.
 ```
 ansible-galaxy install rvm.ruby
 ```
+
+## Fish themes
+https://github.com/oh-my-fish/oh-my-fish
+```
+curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
+```
