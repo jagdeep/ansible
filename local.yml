@@ -74,15 +74,15 @@
         state: present
 
     ## Install Helix Editor
-    - name: Enable COPR for Helix
-      copr:
-        name: varlad/helix
-        state: enabled
+#     - name: Enable COPR for Helix
+#       copr:
+#         name: varlad/helix
+#         state: enabled
 
-    - name: "Install Helix Editor"
-      dnf:
-        name: helix
-        state: present
+#     - name: "Install Helix Editor"
+#       dnf:
+#         name: helix
+#         state: present
 
     ## Install IntelliJ Community Edition
     - name: Install IntelliJ using Snap
