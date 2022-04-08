@@ -22,7 +22,7 @@ ansible-galaxy collection install community.general
 This pulls playbooks from a VCS repo and executes them for the local host
 
 ```
-sudo ansible-pull -U https://github.com/jagdeep/ansible.git
+sudo ansible-pull -U https://github.com/jagdeep/ansible-fedora-35.git
 ```
 
 # Extras
