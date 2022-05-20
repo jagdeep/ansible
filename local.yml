@@ -41,6 +41,7 @@
           - ncdu
           - gitg
           - nano
+          - micro
           - foliate
           - podman
           - buildah
@@ -53,13 +54,13 @@
         state: link
 
     # Install Starship
-    - name: Install Starship using Snap
-      snap:
-        name: starship
-        state: present
+#     - name: Install Starship using Snap
+#       snap:
+#         name: starship
+#         state: present
 
-    - name: Add init script for starship
-      command: echo "eval \"$(starship init bash)\"" >> ~/.bashrc
+#     - name: Add init script for starship
+#       command: echo "eval \"$(starship init bash)\"" >> ~/.bashrc
 
     # Install Mailspring
     - name: Install MailSpring using Snap
@@ -92,11 +93,11 @@
         state: present
 
     ## Install DataGrip Community Edition
-    - name: Install DataGrip using Snap
-      snap:
-        name: datagrip
-        classic: yes
-        state: present
+#     - name: Install DataGrip using Snap
+#       snap:
+#         name: datagrip
+#         classic: yes
+#         state: present
 
     ## Install Zoom
     - name: Add Zoom signing key
@@ -215,11 +216,11 @@
       args:
         warn: no
 
-    - name: Add ansible-pull cron job
-      become: false
-      become_user: "{{ whoami }}"
-      cron:
-        name: ansible auto-provision
-        user: "{{ whoami }}"
-        minute: "*/10"
-        job: ansible-pull -o -U https://github.com/jagdeep/ansible-fedora-35.git
+#     - name: Add ansible-pull cron job
+#       become: false
+#       become_user: "{{ whoami }}"
+#       cron:
+#         name: ansible auto-provision
+#         user: "{{ whoami }}"
+#         minute: "*/10"
+#         job: ansible-pull -o -U https://github.com/jagdeep/ansible-fedora-35.git
